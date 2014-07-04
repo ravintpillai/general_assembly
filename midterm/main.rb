@@ -3,9 +3,21 @@ require 'JSON'
 require_relative "uk_postcode/lib/uk_postcode"
 require_relative 'Location.rb'
 
-
-
 class UserInput
+	def raw_input(prompt)
+		puts prompt
+		gets.strip
+	end
+
+	def handle_input(validity_of_input)
+		if !validity_of_input
+			puts "That input was not valid, please try again"
+		end
+		validity_of_input
+	end
+end
+
+class UserPostcodeInput < UserInput
 	attr_accessor :postcode, :page
 	def initialize
 		@postcode = ask_for_postcode
@@ -15,14 +27,9 @@ class UserInput
 	def ask_for_postcode
 		postcode_is_valid = false
 		until postcode_is_valid
-			puts "Type in a valid postcode"
-			code =gets.strip
+			code = raw_input("Type in a valid postcode, or postcode area")
 			pc = UKPostcode.new(code)
-			if !pc.valid?
-				puts "That postcode was not valid, please try again"
-			else
-				postcode_is_valid = true
-			end
+			postcode_is_valid = pc.valid? ? true : handle_input(false)
 		end
 		code.sub(" ","%20")
 	end
@@ -32,9 +39,9 @@ class UserInput
 	end
 end
 
-first_postcode = UserInput.new
+first_postcode = UserPostcodeInput.new
 
 place = Location.new(first_postcode.page)
 
-
 puts place
+
