@@ -1,0 +1,8 @@
+<h1>Welcome to Secret Number!</h1>
+
+<p> To play, guess a number. if you guess the <em>Secret Number</em> you win</p>
+
+<h2> Pick a number:</h2>
+	<% (1..5).each do |number| %>
+	<%= link_to image_tag("secret_numbers/#{number}.jpeg"), secret_number_path(number) %>
+	<% end %>

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root "games#index"
+  get '/secret_numbers', to: 'secret_numbers#new'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
