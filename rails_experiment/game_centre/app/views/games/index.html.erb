@@ -2,15 +2,11 @@
 
 <p>Choose a game below to get started:</p>
 
-<table>
-	<tr>
-		<td>
-			<%=link_to image_tag("games/secret-number.jpg"), new_secret_number_path %>
+<ul class="games">
+	<li>
+		<%=link_to image_tag("games/secret-number.jpg"), new_secret_number_path %>
 			<h3>Secret Number</h3>
-		</td>
-		<td>
-			<%= image_tag("games/rock-paper-scissors.jpg") %>
-			<h3>Coming Soon</h3>
-		</td>
-	</tr>
-</table>
+		<%= image_tag("games/rock-paper-scissors.jpg") %>
+		<h3>Rock Paper Scissors</h3>
+	</li>
+</ul>
